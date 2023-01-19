@@ -38,7 +38,7 @@ let [image,setImage]=useState(null);
           console.log(result);
           console.log("saved sucessfully");
           alert("saved sucessfully");
-          navigate("/");
+          // navigate("/");
      })
   
   }
@@ -55,23 +55,24 @@ let [image,setImage]=useState(null);
   function handleImage(e){
 
      let img=e.target.files[0];
-console.log("handleImage")
+// console.log("handleImage")
 setImage(img);
 let refStorage=ref(storage , `images/${img.name}`)
 
 
    uploadBytes(refStorage,img).then((result)=>{
      alert("image uploaded");
-     console.log("image uploaded to the storage");
+     // console.log("image uploaded to the storage");
 })
 
   }
 
-  console.log(blog)
-  console.log(blog.title)
-  console.log(imgUrl)
+//   console.log(blog)
+//   console.log(blog.title)
+//   console.log(imgUrl)
 
   return (
+     <div className='blog-parent'>
     <div className='blogs'>
     <h3  className='blogs-title'>Title</h3>
     <input type='text' className='input-title' name='title' onChange={handleData} />
@@ -94,13 +95,15 @@ let refStorage=ref(storage , `images/${img.name}`)
     </div>
 
     <div className='userImage'>
-    <img src='https://c4.wallpaperflare.com/wallpaper/645/701/152/pen-book-ink-wallpaper-preview.jpg'
+    <img src={imgUrl}
 //     onClick={handleImage}
 alt='/'
     className='imageTag' />
     </div>
     </div>
     <button onClick={handleBlogs}  className='saveButton'> save</button>
+    <button className='saveButton' style={{margin:"10px"}} onClick={()=>navigate("/")} >Back</button>
+    </div>
     </div>
   )
 }
